@@ -117,8 +117,17 @@ const shouldCompress = (req, res) => {
   // threshold: It is the byte threshold for the response 
   // body size before considering compression, the default is 1 kB
   threshold: 0.01})); */
-app.options('*', cors()); // ✅ Handle preflight BEFORE all other middleware
-app.use(cors());
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'http://localhost:3002',
+  ],
+  credentials: true
+};
+
+app.options('*', cors(corsOptions)); // ✅ Handle preflight BEFORE all other middleware
+app.use(cors(corsOptions));
 // Compress all HTTP responses
 
 app.use(express.json());
