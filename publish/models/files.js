@@ -1,0 +1,34 @@
+import mongoose from 'mongoose';
+
+
+const fileSchema= new mongoose.Schema({
+    fileName: {
+        type: String,
+        required: true,
+        min :2,
+        max:2048
+    },
+    application: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "Application",
+        required : true
+    },
+    filekey: {
+        type: String,
+        required: true,
+        min :6,
+        max:2048
+    },
+    createdBy :
+    {
+        type: String,
+        required: true,
+    },
+    date:{
+        type: Date,
+        default: Date.now
+    },
+
+});
+
+export default fileSchema;
